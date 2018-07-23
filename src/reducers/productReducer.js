@@ -1,7 +1,8 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
+  ADD_ORDER,
 } from '../actions/productActions';
 
 const initialState = {
@@ -43,6 +44,12 @@ export default function productReducer(state = initialState, action) {
         error: action.payload.error,
         products: []
       };
+
+    case ADD_ORDER:
+      return{
+        ...state,
+        orders: state.orders.push(action.payload.order)
+      }
 
     default:
       // ALWAYS have a default case in a reducer
