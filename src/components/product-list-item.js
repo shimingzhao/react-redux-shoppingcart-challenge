@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import AddItemBtn from './add-item-btn'
-// import RemoveItemBtn from './remove-item-btn'
+import AddItemBtn from './add-item-btn'
+import RemoveItemBtn from './remove-item-btn'
 import { connect } from 'react-redux'
 
 // class ProductListItem extends Component {
@@ -64,20 +64,20 @@ export default function ProductListItem (props) {
       <h3>{props.item.name}</h3>
       <div>${props.item.price}</div>
       <div>
-        {/*<AddBtn*/}
-          {/*cartItem={props.cartItem}*/}
-          {/*product={props.product}*/}
-          {/*addToCart={props.addToCart}*/}
-        {/*/>*/}
-        {/*{*/}
-          {/*props.cartItem*/}
-            {/*? <RemoveBtn*/}
-              {/*cartItem={props.cartItem}*/}
-              {/*product={props.product}*/}
-              {/*removeFromCart={props.removeFromCart}*/}
-            {/*/>*/}
-            {/*: null*/}
-        {/*}*/}
+        <AddItemBtn
+          cartItem={props.item}
+          product={props.product}
+          addToCart={props.addToCart}
+        />
+        {
+          props.cartItem
+            ? <RemoveItemBtn
+              cartItem={props.cartItem}
+              product={props.product}
+              removeFromCart={props.removeFromCart}
+            />
+            : null
+        }
       </div>
     </div>
   )

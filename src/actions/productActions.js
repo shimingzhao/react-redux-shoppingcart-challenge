@@ -1,11 +1,16 @@
 import axios from 'axios'
 
+const orderWithoutItem = (order, item) => order.filter(orderItem => orderItem.name !== item.name)
+
+const itemInOrder = (order, item) => order.filter(orderItem => orderItem.name === item.name)[0]
 
 export const FETCH_PRODUCTS_BEGIN = 'FETCH_PRODUCTS_BEGIN'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE'
-export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const ADD_ORDER = 'ADD_ORDER'
+export const DELETE_ORDER = 'DELETE_ORDER'
+export const ADD_TO_ORDER = 'ADD_TO_ORDER'
+export const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
 
 const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN
@@ -21,10 +26,18 @@ const fetchProductsFailure = error => ({
   payload: {error}
 })
 
-const addOrder = orders => ({
+const addOrder = order => ({
   type: ADD_ORDER,
-  payload: {orders}
+  payload: {order}
 })
+
+const deleteOrder = order =>({
+  type: DELETE_ORDER,
+  payload: {order}
+})
+
+
+
 
 export const fetchProducts = () => {
   return dispatch => {
@@ -39,32 +52,25 @@ export const fetchProducts = () => {
   }
 }
 
-/*export function fetchProducts() {
-  return dispatch => {
-    dispatch(fetchProductsBegin());
-    return fetch("https://huddolapi-next.herokuapp.com/v1/challenge")
-      .then(handleErrors)
-      .then(res => {
-        console.log(res)
-        return res.json()
-      })
-      .then(json => {
-        dispatch(fetchProductsSuccess(json.products));
-        return json.products;
-      })
-      .catch(error => dispatch(fetchProductsFailure(error)));
-  };
-}*/
+export const addNewOrder = (order) => {
+  return (addOrder(order))
+}
 
-// Handle HTTP errors since fetch won't.
-/*function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}*/
+export const addToOrder = (order, item) => {
+  const orderItem = itemInOrder(order, item)
+  return dispatch =>
+  orderItem === undefined
+    ? [...orderWithoutItem(order, item), {...item, quantity: 1}]
+    : [...orderWithoutItem(order, item), {...orderItem, quantity: orderItem.quantity + 1}]
+}
 
-export const addNewOrder = (orders) => {
-  return (addOrder(orders))
+export const removeFromOrder = (order, item) => {
+  return item.quantity === 1
+    ? [...orderWithoutItem(order, item)]
+    : [...orderWithoutItem(order, item), {...item, quantity: item.quantity - 1}]
+}
+
+export const removeAllFromOrder = (order, item) => {
+  return [...orderWithoutItem(order, item)]
 }
 

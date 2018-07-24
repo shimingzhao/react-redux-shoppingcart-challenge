@@ -3,7 +3,7 @@ import ProductListing from './product-listing'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import PlaceOrderBtn from './place-order-btn'
-import { fetchProducts, addNewOrder } from '../actions/productActions'
+import { fetchProducts, addNewOrder, addToOrder } from '../actions/productActions'
 
 class HomePage extends Component {
 
