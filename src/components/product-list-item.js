@@ -61,8 +61,8 @@ import { connect } from 'react-redux'
 export default function ProductListItem (props) {
   return (
     <div className='product-list-item'>
-      <h3>{props.product.name}</h3>
-      <div>${props.product.price}</div>
+      <h3>{props.item.name}</h3>
+      <div>${props.item.price}</div>
       <div>
         {/*<AddBtn*/}
           {/*cartItem={props.cartItem}*/}

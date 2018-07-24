@@ -41,7 +41,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload,
         products: []
       };
 

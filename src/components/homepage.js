@@ -3,18 +3,14 @@ import ProductListing from './product-listing'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import PlaceOrderBtn from './place-order-btn'
-import { fetchProducts } from '../actions/productActions'
-import axios from 'axios/index'
-import _products from './products.json'
-
+import { fetchProducts, addNewOrder } from '../actions/productActions'
 
 class HomePage extends Component {
 
   componentDidMount () {
     // this.props.dispatch.loadAllProduces
-    this.props.fetchProducts
-    console.log(_products)
-    console.log(_products.type)
+    this.props.actions.fetchProducts()
+    // this.props.fetchProducts
   }
 
   render () {
@@ -36,7 +32,7 @@ class HomePage extends Component {
             return (
               <div key={res.id}>
                 <h3>{res.id}: {res.name}</h3>
-                {/*<ProductListing items={res.menu} store_name={res.name}/>*/}
+                <ProductListing items={res.menu} store_name={res.name} orders={orders}/>
               </div>)
           }
         )}
@@ -52,24 +48,27 @@ const mapStateToProps = state =>({
   products: state.products,
   loading: state.loading,
   error: state.error,
-  orders: state.orders
+  orders: state.orders,
 })
 
-// const mapDispatchToProps = (dispatch) => ({
-//   actions: bindActionCreators({loadAllProduces, addNewOrder}, dispatch),
-//   dispatch: dispatch
-// });
+/*const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    fetchProducts,
+    addNewOrder,
+  },
+  dispatch,
+)*/
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchProducts: () => {
-//       dispatch({type: 'ADD', payload: item})
-//     },
-//     removeFromCart: (item) => {
-//       dispatch({type: 'REMOVE', payload: item})
-//     }
-//   }
-// }
+/*const mapDispatchToProps = {
+  fetchProducts, // will be wrapped into a dispatch call
+  addNewOrder, // will be wrapped into a dispatch call
+};*/
 
-export default connect(mapStateToProps, fetchProducts)(HomePage)
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({fetchProducts, addNewOrder}, dispatch),
+  dispatch: dispatch
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
 

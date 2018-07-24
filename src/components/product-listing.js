@@ -12,8 +12,8 @@ export  default function ProductListing (props) {
           <ProductListItem
             item={item}
             key={index}
-            // addToOrder={props.addToOrder}
-            // removeFromOrder={props.removeFromOrder}
+            addToOrder={props.addToOrder}
+            removeFromOrder={props.removeFromOrder}
             orderItem={props.order.filter(orderItem => orderItem.itemid === item.itemid)[0]}
           />)
       }
