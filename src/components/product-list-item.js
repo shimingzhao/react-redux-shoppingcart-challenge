@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AddItemBtn from './add-item-btn'
 import RemoveItemBtn from './remove-item-btn'
-import { connect } from 'react-redux'
 
 // class ProductListItem extends Component {
 //   // constructor (props) {
@@ -58,23 +57,25 @@ import { connect } from 'react-redux'
 //
 // export default connect(mapStateToProps, mapDispatchToProps)(ProductListItem)
 
-export default function ProductListItem (props) {
+const ProductListItem = (props) => {
+
   return (
     <div className='product-list-item'>
       <h3>{props.item.name}</h3>
       <div>${props.item.price}</div>
       <div>
         <AddItemBtn
-          cartItem={props.item}
-          product={props.product}
-          addToCart={props.addToCart}
+          orderItem={props.orderItem}
+          item={props.item}
+          order={props.order}
+          addToOrder={props.addToOrder}
         />
         {
-          props.cartItem
+          props.orderItem
             ? <RemoveItemBtn
-              cartItem={props.cartItem}
-              product={props.product}
-              removeFromCart={props.removeFromCart}
+              orderItem={props.orderItem}
+              item={props.item}
+              removeFromOrder={props.removeFromOrder}
             />
             : null
         }
@@ -82,3 +83,5 @@ export default function ProductListItem (props) {
     </div>
   )
 }
+
+export default ProductListItem

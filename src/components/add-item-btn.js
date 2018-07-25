@@ -1,11 +1,12 @@
 import React from 'react'
 
 export default function AddItemButton (props) {
+  console.log(props.item)
   return (
     <button
-      onClick={() => props.addToOrder(props.order.item)}>
+      onClick={() => props.addToOrder(props.item)}>
       Add to order
-      ({(props.order.item && props.order.item.quantity) || 0 })
+      ({(props.orderItem && props.orderItem.quantity) || 0})
     </button>
   )
 }
