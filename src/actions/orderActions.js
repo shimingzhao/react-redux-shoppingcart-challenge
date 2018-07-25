@@ -5,30 +5,31 @@ const addItemToOrder = order => ({
   payload: {order}
 })
 
-const removeItemFromOrder = order =>({
+const removeItemFromOrder = order => ({
   type: types.REMOVE_FROM_ORDER,
   payload: {order}
 })
 
-const orderWithoutItem = (order, item) => order.filter(orderItem => orderItem.name !== item.name)
+const orderWithoutItem = (order, item) => order.order.filter(orderItem => orderItem.name !== item.name)
 
-const itemInOrder = (order, item) => order.filter(orderItem => orderItem.name === item.name)[0]
+const itemInOrder = (order, item) => {
 
-const addItem = (order, item) => {
+  return  order.order.filter(orderItem => orderItem.name === item.name)[0]
+}
+
+export const addToOrder = (order, item) => {
   const orderItem = itemInOrder(order, item)
   return orderItem === undefined
     ? [...orderWithoutItem(order, item), {...item, quantity: 1}]
     : [...orderWithoutItem(order, item), {...orderItem, quantity: orderItem.quantity + 1}]
 }
 
-const removeItem = (order, item) => {
+export const removeFromOrder = (order, item) => {
   return item.quantity === 1
     ? [...orderWithoutItem(order, item)]
     : [...orderWithoutItem(order, item), {...item, quantity: item.quantity - 1}]
 }
 
-const removeAllItems = (order, item) => {
+export const removeAllFromOrder = (order, item) => {
   return [...orderWithoutItem(order, item)]
 }
-
-export const addToOrder()

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function AddItemButton (props) {
-  console.log(props.item)
+
   return (
     <button
       onClick={() => props.addToOrder(props.item)}>

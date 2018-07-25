@@ -58,11 +58,11 @@ import RemoveItemBtn from './remove-item-btn'
 // export default connect(mapStateToProps, mapDispatchToProps)(ProductListItem)
 
 const ProductListItem = (props) => {
-
+  console.log(props.orderItem)
   return (
     <div className='product-list-item'>
       <h3>{props.item.name}</h3>
-      <div>${props.item.price}</div>
+      <div>${props.item.price.toFixed(2)}</div>
       <div>
         <AddItemBtn
           orderItem={props.orderItem}
@@ -71,7 +71,7 @@ const ProductListItem = (props) => {
           addToOrder={props.addToOrder}
         />
         {
-          props.orderItem
+          props.orderItem !== undefined
             ? <RemoveItemBtn
               orderItem={props.orderItem}
               item={props.item}

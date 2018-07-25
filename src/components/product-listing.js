@@ -6,7 +6,7 @@ import ProductListItem from './product-list-item'
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
-
+  console.log(props.order)
   return (
     <div className='product-listing'>
       {
@@ -16,7 +16,7 @@ const ProductListing = (props) => {
             key={index}
             addToOrder={props.addToOrder}
             removeFromOrder={props.removeFromOrder}
-            order = {props.order}
+            order={props.order}
             orderItem={props.order.filter(orderItem => orderItem.name === item.name)[0]}
           />)
       }
