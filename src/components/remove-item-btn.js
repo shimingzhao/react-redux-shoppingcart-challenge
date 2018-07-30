@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function RemoveItemButton (props) {
+
   return <button
-    onClick={() => props.removeFromCart(props.cartItem)}
+    onClick={() => props.removeFromOrder(props.orderItem)}
   >Remove</button>
 }

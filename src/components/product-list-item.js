@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AddItemBtn from './add-item-btn'
 import RemoveItemBtn from './remove-item-btn'
 
@@ -58,11 +58,14 @@ import RemoveItemBtn from './remove-item-btn'
 // export default connect(mapStateToProps, mapDispatchToProps)(ProductListItem)
 
 const ProductListItem = (props) => {
-  console.log(props.orderItem)
+
+  const item = props.item
+  // console.log(props.orderItem)
   return (
     <div className='product-list-item'>
-      <h3>{props.item.name}</h3>
-      <div>${props.item.price.toFixed(2)}</div>
+      <h3>{item.name}</h3>
+      {/*<h3>{item.custom_id}</h3>*/}
+      <div>${item.price.toFixed(2)}</div>
       <div>
         <AddItemBtn
           orderItem={props.orderItem}

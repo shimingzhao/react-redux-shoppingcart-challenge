@@ -7,7 +7,7 @@ const fetchProductsBegin = () => ({
 
 const fetchProductsSuccess = products => ({
   type: types.FETCH_PRODUCTS_SUCCESS,
-  payload: {products}
+  payload: {products},
 })
 
 const fetchProductsFailure = error => ({

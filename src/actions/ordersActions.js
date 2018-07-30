@@ -1,14 +1,16 @@
 import * as types from '../constants/ActionTypes'
 
-const addOrder = (order) => ({
+export const placeOrder = (order) => dispatch => ({
   type: types.ADD_ORDER,
-  payload: {}
+  payload: order
 })
 
-const deleteOrder = (order) => ({
+export const deleteOrder = (order) => dispatch => ({
   type: types.DELETE_ORDER,
-  payload: {}
+  payload: order
 })
+
+
 
 
 

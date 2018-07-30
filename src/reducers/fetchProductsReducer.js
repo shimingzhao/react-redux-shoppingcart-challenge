@@ -3,6 +3,7 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
 } from '../constants/ActionTypes';
+import uuid from 'uuid'
 
 const initialState = {
   products: [],
@@ -20,11 +21,20 @@ export default function fetchProductsReducer(state = initialState, action) {
       };
 
     case FETCH_PRODUCTS_SUCCESS:
-      return {
+
+      let temp = {
         ...state,
         loading: false,
         products: action.payload.products
       };
+      temp.products.forEach((v, i) => {
+        v.menu.forEach((v_inner, i_inner) => {
+          // console.log(v_inner);
+          v_inner['custom_id'] = uuid();
+        });
+      });
+
+      return temp;
 
     case FETCH_PRODUCTS_FAILURE:
       return {

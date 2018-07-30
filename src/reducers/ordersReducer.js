@@ -1,7 +1,5 @@
-import {
-  ADD_ORDER,
-  DELETE_ORDER,
-} from '../constants/ActionTypes'
+import * as types from '../constants/ActionTypes'
+import uuid from 'uuid'
 
 const initialState = {
   orders: []
@@ -10,16 +8,16 @@ const initialState = {
 export default function ordersReducer (state = initialState, action) {
   switch (action.type) {
 
-    case ADD_ORDER:
+    case types.PLACE_ORDER:
       return {
-        ...state.orders_stuff,
-        orders: state.orders_stuff.orders.push(action.payload.order)
+        ...state,
+        orders: [...state.orders, {...action.payload, order_id: uuid()}]
       }
 
-    case DELETE_ORDER:
+    case types.DELETE_ORDER:
       return{
-        ...state.orders_stuff,
-        orders: state.orders_stuff.orders.filter(action.payload.order)
+        ...state,
+        orders: []
       }
 
     default:

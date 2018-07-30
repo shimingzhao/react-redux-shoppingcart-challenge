@@ -4,6 +4,7 @@ import Order from './order'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../actions/fetchProductsActions'
+import { addToOrder, removeFromOrder, removeAllFromOrder } from '../actions/orderActions'
 
 class HomePage extends Component {
 
@@ -15,7 +16,7 @@ class HomePage extends Component {
 
   render () {
 
-    const {error, loading, products} = this.props
+    const {error, loading, products, order} = this.props
 
     if (error) {
       return <div>Error! {error.message}</div>
@@ -36,7 +37,7 @@ class HomePage extends Component {
               </div>)
           }
         )}
-        <Order />
+        <Order order={order} actions={this.props.actions} />
       </div>
     )
   }
@@ -47,11 +48,12 @@ const mapStateToProps = state => {
     products: state.products_stuff.products,
     loading: state.products_stuff.loading,
     error: state.products_stuff.error,
+    order: state.order_stuff.order,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({fetchProducts}, dispatch),
+  actions: bindActionCreators({fetchProducts, addToOrder, removeFromOrder, removeAllFromOrder}, dispatch),
   dispatch: dispatch
 })
 

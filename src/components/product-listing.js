@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import ProductListItem from './product-list-item'
-// import { addToOrder, removeFromOrder } from '../actions/orderActions'
+import { addToOrder, removeFromOrder } from '../actions/orderActions'
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
-  console.log(props.order)
   return (
     <div className='product-listing'>
       {
@@ -16,8 +15,8 @@ const ProductListing = (props) => {
             key={index}
             addToOrder={props.addToOrder}
             removeFromOrder={props.removeFromOrder}
-            order={props.order}
-            orderItem={props.order.filter(orderItem => orderItem.name === item.name)[0]}
+            order={props.items}
+            orderItem={props.order.filter(orderItem => orderItem.custom_id === item.custom_id)[0]}
           />)
       }
     </div>
@@ -31,21 +30,5 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   actions: bindActionCreators({addToOrder, removeFromOrder}, dispatch),
-//   dispatch: dispatch
-// })
 
-function mapDispatchToProps (dispatch) {
-
-  return {
-    addToOrder: (item) => {
-      dispatch({type: 'ADD_TO_ORDER', payload: item})
-    },
-    removeFromOrder: (item) => {
-      dispatch({type: 'REMOVE_FROM_ORDER', payload: item})
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListing)
+export default connect(mapStateToProps, {addToOrder, removeFromOrder})(ProductListing)
