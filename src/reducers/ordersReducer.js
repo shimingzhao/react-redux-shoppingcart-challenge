@@ -5,6 +5,8 @@ const initialState = {
   orders: []
 }
 
+const ordersWithoutOrder = (orders, order) => orders.filter(ordersItem => ordersItem.order_id !== order.order_id)
+
 export default function ordersReducer (state = initialState, action) {
   switch (action.type) {
 
@@ -17,7 +19,7 @@ export default function ordersReducer (state = initialState, action) {
     case types.DELETE_ORDER:
       return{
         ...state,
-        orders: []
+        orders: [...ordersWithoutOrder(state.orders, action.payload)]
       }
 
     default:
