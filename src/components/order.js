@@ -1,8 +1,15 @@
 import React from 'react'
-import CheckoutPopup from './checkout'
 
-function sort(items) {
+function sort (items) {
   return items.sort((a, b) => a.custom_id < b.custom_id)
+}
+
+const isEmpty = (obj) => {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key))
+      return false;
+  }
+  return true;
 }
 
 const Order = (props) => {
@@ -64,14 +71,16 @@ const Order = (props) => {
       </table>
       <div className='total'>
         <div>Total: ${totalPrice.toFixed(2)}</div>
+        <div>
+          <button onClick={() => {props.actions.setOrderInitialState()}}>Reset Order</button>
+          <button style={{display: isEmpty(props.order) ? 'none' : ''}}
+                  onClick={() => {
+                    props.actions.placeOrder(props.order, totalPrice)
+                    props.actions.setOrderInitialState()
+                  }}>Place order
+          </button>
+        </div>
 
-        <button onClick={() => {
-          props.actions.placeOrder(props.order)
-          console.log(typeof props.order)
-        }}>Place order</button>
-
-
-        {/*<div><CheckoutPopup cart={this.props.cart} total={totalPrice}/></div>*/}
       </div>
     </div>
   )

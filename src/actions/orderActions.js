@@ -60,3 +60,16 @@ export const removeAllFromOrder = (item) => dispatch => {
     payload: item
   });
 }
+
+export const setOrderInitialState = () => dispatch => {
+  dispatch({
+    type: types.SET_ORDER_INIT
+  })
+}
+
+export const editOrder = (order) => dispatch => {
+  dispatch({
+    type: types.EDIT_ORDER,
+    payload: order
+  })
+}

@@ -8,6 +8,7 @@ const initialState = {
 const ordersWithoutOrder = (orders, order) => orders.filter(ordersItem => ordersItem.order_id !== order.order_id)
 
 const ordersReducer = (state = initialState, action) => {
+  
   switch (action.type) {
 
     case types.PLACE_ORDER:
@@ -15,10 +16,6 @@ const ordersReducer = (state = initialState, action) => {
         ...state,
         orders: [...state.orders, {...action.payload, order_id: createId(8, 10)}]
       }
-      // return {
-      //   ...state,
-      //   arr: [...state.arr, action.newItem]
-      // }
 
     case types.DELETE_ORDER:
       return{

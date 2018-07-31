@@ -3,11 +3,19 @@ import { connect } from 'react-redux'
 
 import ProductListItem from './product-list-item'
 import { addToOrder, removeFromOrder } from '../actions/orderActions'
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
   return (
-    <div className='product-listing'>
+    <div className="mb-lg-3">
       {
         props.items.map((item, index) =>
           <ProductListItem
