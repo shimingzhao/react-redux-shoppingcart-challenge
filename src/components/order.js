@@ -1,13 +1,12 @@
 import React from 'react'
 import CheckoutPopup from './checkout'
 
-function sort (items) {
+function sort(items) {
   return items.sort((a, b) => a.custom_id < b.custom_id)
 }
 
 const Order = (props) => {
   let totalPrice = 0
-  console.log(props)
   return (
     <div>
       <table>
@@ -65,7 +64,13 @@ const Order = (props) => {
       </table>
       <div className='total'>
         <div>Total: ${totalPrice.toFixed(2)}</div>
-        <button>Place order</button>
+
+        <button onClick={() => {
+          props.actions.placeOrder(props.order)
+          console.log(typeof props.order)
+        }}>Place order</button>
+
+
         {/*<div><CheckoutPopup cart={this.props.cart} total={totalPrice}/></div>*/}
       </div>
     </div>

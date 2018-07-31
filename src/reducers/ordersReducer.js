@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import uuid from 'uuid'
+import createId from '../constants/generateId'
 
 const initialState = {
   orders: []
@@ -7,14 +7,18 @@ const initialState = {
 
 const ordersWithoutOrder = (orders, order) => orders.filter(ordersItem => ordersItem.order_id !== order.order_id)
 
-export default function ordersReducer (state = initialState, action) {
+const ordersReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case types.PLACE_ORDER:
       return {
         ...state,
-        orders: [...state.orders, {...action.payload, order_id: uuid()}]
+        orders: [...state.orders, {...action.payload, order_id: createId(8, 10)}]
       }
+      // return {
+      //   ...state,
+      //   arr: [...state.arr, action.newItem]
+      // }
 
     case types.DELETE_ORDER:
       return{
@@ -27,3 +31,5 @@ export default function ordersReducer (state = initialState, action) {
       return state
   }
 }
+
+export default ordersReducer
