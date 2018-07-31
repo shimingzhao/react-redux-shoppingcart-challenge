@@ -3,19 +3,12 @@ import { connect } from 'react-redux'
 
 import ProductListItem from './product-list-item'
 import { addToOrder, removeFromOrder } from '../actions/orderActions'
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button
-} from "reactstrap";
+import { Card } from 'semantic-ui-react'
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
   return (
-    <div className="mb-lg-3">
+    <Card.Group>
       {
         props.items.map((item, index) =>
           <ProductListItem
@@ -27,7 +20,7 @@ const ProductListing = (props) => {
             orderItem={props.order.filter(orderItem => orderItem.custom_id === item.custom_id)[0]}
           />)
       }
-    </div>
+    </Card.Group>
   )
 }
 

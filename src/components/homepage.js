@@ -7,6 +7,7 @@ import { fetchProducts } from '../actions/fetchProductsActions'
 import { addToOrder, removeFromOrder, removeAllFromOrder, setOrderInitialState } from '../actions/orderActions'
 import { placeOrder, deleteOrder } from "../actions/ordersActions";
 import Order from './order'
+import { Grid, Segment } from 'semantic-ui-react'
 
 class HomePage extends Component {
 
@@ -30,12 +31,13 @@ class HomePage extends Component {
 
     return (
       <div>
+        <Order order={order} actions={this.props.actions} />
         {products.map(res => {
             return (
-              <div key={res.id}>
+              <Segment basic key={res.id}>
                 <h3>{res.id}: {res.name}</h3>
                 <ProductListing items={res.menu} store_name={res.name}/>
-              </div>)
+              </Segment>)
           }
         )}
         <Order order={order} actions={this.props.actions} />

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button } from "reactstrap";
+import { Button } from 'semantic-ui-react';
 
 export default function RemoveItemButton (props) {
 
-  return <Button
+  return <Button basic color='red'
     onClick={() => props.removeFromOrder(props.orderItem)}
   >Remove</Button>
 }

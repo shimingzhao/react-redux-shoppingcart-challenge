@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { editOrder } from '../actions/orderActions'
 import { deleteOrder } from '../actions/ordersActions'
 import OrderDetail from './orderdetails'
+import { Grid, Segment, Table, Button } from 'semantic-ui-react'
 
 function sort(items) {
   return items.sort((a, b) => a.custom_id < b.custom_id)
@@ -15,19 +16,23 @@ class Orders extends Component {
 
     const {order, orders} = this.props
     return (
-      <div>
+      <Segment basic>
         <h3>My Orders</h3>
         {
           orders.map(temp => {
             return (
-              <div key={temp.order_id}>
-                <div>Order ID: {temp.order_id}</div>
+              <Table key={temp.order_id}>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell colSpan='5'>Order ID: {temp.order_id}</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
                 <OrderDetail order={temp} actions={this.props.actions} />
-              </div>
+              </Table>
             )
           })
         }
-      </div>
+      </Segment>
     )
   }
 }

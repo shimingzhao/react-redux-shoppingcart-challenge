@@ -1,33 +1,27 @@
 import React from 'react'
 import AddItemBtn from './add-item-btn'
 import RemoveItemBtn from './remove-item-btn'
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button
-} from 'reactstrap'
+import { Button, Card, Image } from 'semantic-ui-react'
 
 const ProductListItem = (props) => {
 
   const item = props.item
   // console.log(props.orderItem)
   return (
-    <div>
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
+    <Card>
+      <Card.Content>
+        <Card.Header>{item.name}</Card.Header>
         {/*<h3>{item.custom_id}</h3>*/}
-        <CardSubtitle>${item.price.toFixed(2)}</CardSubtitle>
-        <div>
+        <Card.Description>${item.price.toFixed(2)}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <div className='ui two buttons'>
           <AddItemBtn
             orderItem={props.orderItem}
             item={props.item}
             order={props.order}
             addToOrder={props.addToOrder}
           />
-          &nbsp;&nbsp;
           {
             props.orderItem !== undefined
               ? <RemoveItemBtn
@@ -38,8 +32,8 @@ const ProductListItem = (props) => {
               : null
           }
         </div>
-      </CardBody>
-    </div>
+      </Card.Content>
+    </Card>
   )
 }
 
