@@ -19,7 +19,7 @@ class HomePage extends Component {
 
   render () {
 
-    const {error, loading, products, order} = this.props
+    const {error, loading, products, order, clicker} = this.props
 
     if (error) {
       return <div>Error! {error.message}</div>
@@ -31,16 +31,16 @@ class HomePage extends Component {
 
     return (
       <div>
-        <Order order={order} actions={this.props.actions} />
+        <Order order={order} actions={this.props.actions} clicker={clicker} />
         {products.map(res => {
             return (
               <Segment basic key={res.id}>
                 <h3>{res.id}: {res.name}</h3>
-                <ProductListing items={res.menu} store_name={res.name}/>
+                <ProductListing items={res.menu} store_name={res.name} clicker={clicker}/>
               </Segment>)
           }
         )}
-        <Order order={order} actions={this.props.actions} />
+        <Order order={order} actions={this.props.actions} clicker={clicker}/>
       </div>
     )
   }

@@ -6,7 +6,7 @@ export default function AddItemButton (props) {
   return (
     <Button basic color='green'
       onClick={() => props.addToOrder(props.item)}>
-      Add to order
+      Add
       ({(props.orderItem && props.orderItem.quantity) || 0})
     </Button>
   )

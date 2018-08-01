@@ -6,7 +6,7 @@ import OrdersPage from './components/orderspage'
 const Router = () => (
   <Switch>
     <Route exact path='/' component={HomePage} />
-    <Route exact path='/orders' component={OrdersPage} />
+    <Route exact path='/ordersfsdaf' component={OrdersPage} />
   </Switch>
 )
 export default Router

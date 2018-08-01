@@ -25,11 +25,9 @@ const ProductListing = (props) => {
 }
 
 const mapStateToProps = state => {
-
   return {
     order: state.order_stuff.order,
   }
 }
-
 
 export default connect(mapStateToProps, {addToOrder, removeFromOrder})(ProductListing)

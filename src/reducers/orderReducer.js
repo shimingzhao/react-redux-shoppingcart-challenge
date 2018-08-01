@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes'
 import createId from '../constants/generateId'
 
 const initialState = {
-  order: []
+  order: [],
 }
 
 const orderWithoutItem = (order, item) => order.filter(orderItem => orderItem.custom_id !== item.custom_id)
@@ -45,7 +45,7 @@ const orderReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        order: state.order.concat(action.payload)
+        order: state.order.concat(action.payload),
       }
 
 
