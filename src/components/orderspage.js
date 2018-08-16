@@ -13,12 +13,12 @@ function sort (items) {
 class Orders extends Component {
 
   render () {
-
     const {order, orders, clicker} = this.props
     return (
       <Segment basic>
         <div style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-between'}}>
           <div><h3>My Orders</h3></div>
+          <div style={{alignSelf: 'center'}}>You have {orders.length} orders.</div>
           <div><Button basic color='green' onClick={(e) => {
             let obj = {
               name: 'menu'
@@ -30,7 +30,7 @@ class Orders extends Component {
           sort(orders).map(temp => {
             return (
               <Segment key={temp.order_id}>
-                <Grid style={{fontWeight:'bold', color: 'grey', paddingTop:'10px', paddingBottom:'10px'}}>
+                <Grid style={{fontWeight: 'bold', color: 'grey', paddingTop: '10px', paddingBottom: '10px'}}>
                   <Grid.Column width='8'>Order ID: {temp.order_id}</Grid.Column>
                   <Grid.Column width='8' textAlign='right'>Order Date: {temp.order_date.substring(0, 24)}</Grid.Column>
                 </Grid>
