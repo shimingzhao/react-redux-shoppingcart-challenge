@@ -14,6 +14,15 @@ export const deleteOrder = (order) => dispatch => {
   })
 }
 
+export const checkoutOrder = (order) => dispatch =>{
+  dispatch({
+    type: types.CHECKOUT_ORDER,
+    payload: order
+  })
+}
+
+
+
 
 
 

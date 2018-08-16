@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editOrder } from '../actions/orderActions'
-import { deleteOrder } from '../actions/ordersActions'
+import { deleteOrder, checkoutOrder } from '../actions/ordersActions'
 import OrderDetail from './orderdetails'
 import { Grid, Segment, Table, Button } from 'semantic-ui-react'
 
 function sort (items) {
-  return items.sort((a, b) => a.custom_id < b.custom_id)
+  return items.sort((a, b) => a.order_date < b.order_date)
 }
 
 class Orders extends Component {
@@ -27,16 +27,15 @@ class Orders extends Component {
           }}>New order</Button></div>
         </div>
         {
-          orders.map(temp => {
+          sort(orders).map(temp => {
             return (
-              <Table key={temp.order_id}>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell colSpan='5'>Order ID: {temp.order_id}</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
+              <Segment key={temp.order_id}>
+                <Grid style={{fontWeight:'bold', color: 'grey', paddingTop:'10px', paddingBottom:'10px'}}>
+                  <Grid.Column width='8'>Order ID: {temp.order_id}</Grid.Column>
+                  <Grid.Column width='8' textAlign='right'>Order Date: {temp.order_date.substring(0, 24)}</Grid.Column>
+                </Grid>
                 <OrderDetail clicker={clicker} order={temp} actions={this.props.actions}/>
-              </Table>
+              </Segment>
             )
           })
         }
@@ -53,7 +52,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({editOrder, deleteOrder}, dispatch),
+  actions: bindActionCreators({editOrder, deleteOrder, checkoutOrder}, dispatch),
   dispatch: dispatch
 })
 

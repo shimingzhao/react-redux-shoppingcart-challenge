@@ -13,15 +13,17 @@ export default class OrderDetail extends Component {
     this.setState({closeOnEscape, closeOnDimmerClick, open: true})
   }
 
-  close = () => this.setState({open: false})
+  close = () => {
+    this.setState({open: false})
+  }
 
   render () {
     const {order, actions, clicker} = this.props
     const {open, closeOnEscape, closeOnDimmerClick} = this.state
     return (
       <div>
-        <Table striped size='small' padded>
-          <Table.Header/>
+        <Table striped size='small'>
+          {/*<Table.Header/>*/}
           <Table.Body>
             {
               order ?
@@ -31,7 +33,8 @@ export default class OrderDetail extends Component {
                       <Table.Cell verticalAlign='middle'>{item.name}</Table.Cell>
                       <Table.Cell verticalAlign='middle' collapsing>{item.quantity}</Table.Cell>
                       <Table.Cell verticalAlign='middle' collapsing>${item.price.toFixed(2)}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>${(item.price * item.quantity).toFixed(2)}</Table.Cell>
+                      <Table.Cell verticalAlign='middle'
+                                  collapsing>${(item.price * item.quantity).toFixed(2)}</Table.Cell>
                     </Table.Row>)
                 })
                 :
@@ -54,9 +57,9 @@ export default class OrderDetail extends Component {
           </Table.Header>*/}
           </Table.Body>
         </Table>
-        <Segment basic className='total'>
+        <div className='total'>
           <div>Total: ${order.price.toFixed(2)}</div>
-          <div>
+          <div style={{display: order.checkout_state ? 'none' : ''}}>
             <Button basic color='green' onClick={(e) => {
               actions.editOrder(order.order)
               actions.deleteOrder(order)
@@ -74,7 +77,9 @@ export default class OrderDetail extends Component {
               open={open}
               closeOnEscape={closeOnEscape}
               closeOnDimmerClick={closeOnDimmerClick}
-              onClose={this.close}
+              // onClose={(e) => {
+              //   actions.
+              // }}
               size='tiny'
             >
               <Modal.Header>Order ID: {order.order_id}</Modal.Header>
@@ -101,17 +106,22 @@ export default class OrderDetail extends Component {
               </Modal.Content>
               <Modal.Actions style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-between'}}>
                 <div style={{}}>Total Price: ${order.price.toFixed(2)}</div>
-                <Button
-                  onClick={this.close}
-                  positive
-                  labelPosition='right'
-                  icon='checkmark'
-                  content='Checkout'
-                />
+                  <Button
+                    onClick={()=>{
+                      actions.checkoutOrder(order)
+                      this.close()
+                    }
+
+                    }
+                    positive
+                    labelPosition='right'
+                    icon='checkmark'
+                    content='Checkout'
+                  />
               </Modal.Actions>
             </Modal>
           </div>
-        </Segment>
+        </div>
       </div>
     )
   }
