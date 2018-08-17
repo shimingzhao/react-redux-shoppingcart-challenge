@@ -7,7 +7,14 @@ import OrderDetail from './orderdetails'
 import { Grid, Segment, Table, Button } from 'semantic-ui-react'
 
 function sort (items) {
-  return items.sort((a, b) => a.order_date < b.order_date)
+  return items.sort((a, b) => {
+      if (a.checkout_state === true && a.checkout_state === true)
+        return a.order_checkout_at < b.order_checkout_at
+      else if (a.checkout_state === false && a.checkout_state === false)
+        return a.order_placed_at < b.order_placed_at
+      else return false
+    }
+  )
 }
 
 function counter (orders) {
@@ -44,7 +51,13 @@ class Orders extends Component {
               <Segment key={temp.order_id}>
                 <Grid style={{fontWeight: 'bold', color: 'green', paddingTop: '10px', paddingBottom: '10px'}}>
                   <Grid.Column width='8'>Order ID: {temp.order_id}</Grid.Column>
-                  <Grid.Column width='8' textAlign='right'>Order Date: {temp.order_date.substring(0, 24)}</Grid.Column>
+                  <Grid.Column width='8' textAlign='right'>
+                    {
+                      temp.checkout_state === false
+                        ? `Order placed on: ${temp.order_placed_at.substring(0, 24)}`
+                        : `Order checkout on: ${temp.order_checkout_at.substring(0, 24)}`
+                    }
+                  </Grid.Column>
                 </Grid>
                 <OrderDetail clicker={clicker} order={temp} actions={this.props.actions}/>
               </Segment>
