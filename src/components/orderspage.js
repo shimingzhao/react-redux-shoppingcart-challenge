@@ -42,7 +42,7 @@ class Orders extends Component {
           sort(orders).map(temp => {
             return (
               <Segment key={temp.order_id}>
-                <Grid style={{fontWeight: 'bold', color: 'grey', paddingTop: '10px', paddingBottom: '10px'}}>
+                <Grid style={{fontWeight: 'bold', color: 'green', paddingTop: '10px', paddingBottom: '10px'}}>
                   <Grid.Column width='8'>Order ID: {temp.order_id}</Grid.Column>
                   <Grid.Column width='8' textAlign='right'>Order Date: {temp.order_date.substring(0, 24)}</Grid.Column>
                 </Grid>

@@ -22,25 +22,23 @@ export default class OrderDetail extends Component {
     const {open, closeOnEscape, closeOnDimmerClick} = this.state
     return (
       <div>
-        <Table striped size='small'>
-          {/*<Table.Header/>*/}
-          <Table.Body>
-            {
-              order ?
-                sort(order.order).map((item, index) => {
-                  return (
-                    <Table.Row key={index}>
-                      <Table.Cell verticalAlign='middle'>{item.name}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>{item.quantity}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>${item.price.toFixed(2)}</Table.Cell>
-                      <Table.Cell verticalAlign='middle'
-                                  collapsing>${(item.price * item.quantity).toFixed(2)}</Table.Cell>
-                    </Table.Row>)
-                })
-                :
-                ''
-            }
-            {/*          <Table.Header>
+        {/*<Table.Header/>*/}
+        <div>
+          {
+            order ?
+              sort(order.order).map((item, index) => {
+                return (
+                  <div key={index} className='orderList'>
+                    <div style={{width:'50%'}}>{item.store_name} - {item.name}</div>
+                    <div style={{width:'10%'}}>{item.quantity}</div>
+                    <div style={{width:'20%'}}>${item.price.toFixed(2)}</div>
+                    <div style={{width:'20%'}}>${(item.price * item.quantity).toFixed(2)}</div>
+                  </div>)
+              })
+              :
+              ''
+          }
+          {/*          <Table.Header>
           <Table.Row>
           <Table.HeaderCell verticalAlign='middle' colSpan='2'>TOTAL: ${totalPrice.toFixed(2)}</Table.HeaderCell>
           <Table.HeaderCell colSpan='3' textAlign='right'>
@@ -55,8 +53,7 @@ export default class OrderDetail extends Component {
           </Table.HeaderCell>
           </Table.Row>
           </Table.Header>*/}
-          </Table.Body>
-        </Table>
+        </div>
         <div className='total'>
           <div>Total: ${order.price.toFixed(2)}</div>
           <div style={{display: order.checkout_state ? 'none' : ''}}>
@@ -106,18 +103,18 @@ export default class OrderDetail extends Component {
               </Modal.Content>
               <Modal.Actions style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-between'}}>
                 <div style={{}}>Total Price: ${order.price.toFixed(2)}</div>
-                  <Button
-                    onClick={()=>{
-                      actions.checkoutOrder(order)
-                      this.close()
-                    }
+                <Button
+                  onClick={() => {
+                    actions.checkoutOrder(order)
+                    this.close()
+                  }
 
-                    }
-                    positive
-                    labelPosition='right'
-                    icon='checkmark'
-                    content='Checkout'
-                  />
+                  }
+                  positive
+                  labelPosition='right'
+                  icon='checkmark'
+                  content='Checkout'
+                />
               </Modal.Actions>
             </Modal>
           </div>

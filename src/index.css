@@ -34,6 +34,20 @@ body {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    color: grey;
+    color: green;
     font-weight:bold;
+    padding-top: 10px;
+}
+
+.orderList {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding-left: 15px;
+    align-items: center;
+    padding-bottom: 3px;
+}
+
+.orderItem {
+    width: 25%;
 }
