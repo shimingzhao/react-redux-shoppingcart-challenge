@@ -31,6 +31,7 @@ export default function fetchProductsReducer(state = initialState, action) {
         v.menu.forEach((v_inner, i_inner) => {
           // console.log(v_inner);
           v_inner['custom_id'] = v.id + '-' + createId(8 ,10);
+          v_inner['store_name'] = v.name;
         });
       });
 

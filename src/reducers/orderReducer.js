@@ -42,7 +42,6 @@ const orderReducer = (state = initialState, action) => {
       }
 
     case types.EDIT_ORDER:
-
       return {
         ...state,
         order: state.order.concat(action.payload),

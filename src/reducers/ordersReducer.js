@@ -14,13 +14,19 @@ const ordersReducer = (state = initialState, action) => {
     case types.PLACE_ORDER:
       return {
         ...state,
-        orders: [...state.orders, {...action.payload, order_id: createId(8, 10)}]
+        orders: [...state.orders, {...action.payload, order_id: createId(8, 10), checkout_state: false, order_placed_at: Date(), order_checkout_at: ''}]
       }
 
     case types.DELETE_ORDER:
       return{
         ...state,
         orders: [...ordersWithoutOrder(state.orders, action.payload)]
+      }
+
+    case types.CHECKOUT_ORDER:
+      return{
+        ...state,
+        orders: [...ordersWithoutOrder(state.orders, action.payload), {...action.payload, checkout_state: true, order_checkout_at: Date()}]
       }
 
     default:

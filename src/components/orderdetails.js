@@ -13,31 +13,32 @@ export default class OrderDetail extends Component {
     this.setState({closeOnEscape, closeOnDimmerClick, open: true})
   }
 
-  close = () => this.setState({open: false})
+  close = () => {
+    this.setState({open: false})
+  }
 
   render () {
     const {order, actions, clicker} = this.props
     const {open, closeOnEscape, closeOnDimmerClick} = this.state
     return (
       <div>
-        <Table striped size='small' padded>
-          <Table.Header/>
-          <Table.Body>
-            {
-              order ?
-                sort(order.order).map((item, index) => {
-                  return (
-                    <Table.Row key={index}>
-                      <Table.Cell verticalAlign='middle'>{item.name}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>{item.quantity}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>${item.price.toFixed(2)}</Table.Cell>
-                      <Table.Cell verticalAlign='middle' collapsing>${(item.price * item.quantity).toFixed(2)}</Table.Cell>
-                    </Table.Row>)
-                })
-                :
-                ''
-            }
-            {/*          <Table.Header>
+        {/*<Table.Header/>*/}
+        <div>
+          {
+            order ?
+              sort(order.order).map((item, index) => {
+                return (
+                  <div key={index} className='orderList'>
+                    <div style={{width:'50%'}}>{item.store_name} - {item.name}</div>
+                    <div style={{width:'10%'}}>{item.quantity}</div>
+                    <div style={{width:'20%'}}>${item.price.toFixed(2)}</div>
+                    <div style={{width:'20%'}}>${(item.price * item.quantity).toFixed(2)}</div>
+                  </div>)
+              })
+              :
+              ''
+          }
+          {/*          <Table.Header>
           <Table.Row>
           <Table.HeaderCell verticalAlign='middle' colSpan='2'>TOTAL: ${totalPrice.toFixed(2)}</Table.HeaderCell>
           <Table.HeaderCell colSpan='3' textAlign='right'>
@@ -52,11 +53,10 @@ export default class OrderDetail extends Component {
           </Table.HeaderCell>
           </Table.Row>
           </Table.Header>*/}
-          </Table.Body>
-        </Table>
-        <Segment basic className='total'>
+        </div>
+        <div className='total'>
           <div>Total: ${order.price.toFixed(2)}</div>
-          <div>
+          <div style={{display: order.checkout_state ? 'none' : ''}}>
             <Button basic color='green' onClick={(e) => {
               actions.editOrder(order.order)
               actions.deleteOrder(order)
@@ -74,7 +74,9 @@ export default class OrderDetail extends Component {
               open={open}
               closeOnEscape={closeOnEscape}
               closeOnDimmerClick={closeOnDimmerClick}
-              onClose={this.close}
+              // onClose={(e) => {
+              //   actions.
+              // }}
               size='tiny'
             >
               <Modal.Header>Order ID: {order.order_id}</Modal.Header>
@@ -102,7 +104,12 @@ export default class OrderDetail extends Component {
               <Modal.Actions style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-between'}}>
                 <div style={{}}>Total Price: ${order.price.toFixed(2)}</div>
                 <Button
-                  onClick={this.close}
+                  onClick={() => {
+                    actions.checkoutOrder(order)
+                    this.close()
+                  }
+
+                  }
                   positive
                   labelPosition='right'
                   icon='checkmark'
@@ -111,7 +118,7 @@ export default class OrderDetail extends Component {
               </Modal.Actions>
             </Modal>
           </div>
-        </Segment>
+        </div>
       </div>
     )
   }
