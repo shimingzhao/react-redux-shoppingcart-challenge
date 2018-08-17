@@ -10,6 +10,16 @@ function sort (items) {
   return items.sort((a, b) => a.order_date < b.order_date)
 }
 
+function counter (orders) {
+  let pending_order = 0
+  orders.map(item => {
+    item.checkout_state === false
+      ? pending_order++
+      : pending_order
+  })
+  return pending_order
+}
+
 class Orders extends Component {
 
   render () {
@@ -18,7 +28,9 @@ class Orders extends Component {
       <Segment basic>
         <div style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-between'}}>
           <div><h3>My Orders</h3></div>
-          <div style={{alignSelf: 'center'}}>You have {orders.length} orders.</div>
+          <div style={{alignSelf: 'center'}}>You
+            have {orders.length} {orders.length > 1 ? 'orders' : 'order'},
+            and {counter(orders)} pending {counter(orders) > 1 ? 'orders' : 'order'}</div>
           <div><Button basic color='green' onClick={(e) => {
             let obj = {
               name: 'menu'
