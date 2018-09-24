@@ -4,8 +4,9 @@ import RemoveItemBtn from './remove-item-btn'
 import { Button, Card, Image } from 'semantic-ui-react'
 
 const ProductListItem = (props) => {
-
+  // console.log(props.item)
   const item = props.item
+  // console.log(item)
   // console.log(props.orderItem)
   return (
     <Card>

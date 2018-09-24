@@ -7,6 +7,7 @@ import { Card } from 'semantic-ui-react'
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
+  // console.log(props.items)
   return (
     <Card.Group>
       {
