@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import { Segment, Table, Button, Modal, Grid } from 'semantic-ui-react'
 
 function sort (items) {
@@ -55,7 +54,7 @@ export default class OrderDetail extends Component {
           </Table.Header>*/}
         </div>
         <div className='total'>
-          <div>Total: ${order.price.toFixed(2)}</div>
+          <div style={{paddingBottom: '10px'}}>Total: ${order.price.toFixed(2)}</div>
           <div style={{display: order.checkout_state ? 'none' : ''}}>
             <Button basic color='green' onClick={(e) => {
               actions.editOrder(order.order)

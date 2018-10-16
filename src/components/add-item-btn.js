@@ -8,6 +8,7 @@ export default function AddItemButton (props) {
       onClick={() => props.addToOrder(props.item)}>
       Add
       ({(props.orderItem && props.orderItem.quantity) || 0})
+      {/*({props.quantity})*/}
     </Button>
   )
 }

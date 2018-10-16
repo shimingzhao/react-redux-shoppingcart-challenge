@@ -7,7 +7,6 @@ import Orders from './orderspage'
 export default class Navigation extends Component {
   state = {activeItem: 'menu'}
   handleItemClick = (e, name) => {
-    console.log(name.name)
     this.setState({activeItem: name.name})
   }
 

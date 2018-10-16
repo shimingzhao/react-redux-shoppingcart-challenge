@@ -7,7 +7,8 @@ const ProductListItem = (props) => {
   // console.log(props.item)
   const item = props.item
   // console.log(item)
-  // console.log(props.orderItem)
+  // console.log(props.item)
+
   return (
     <Card>
       <Card.Content>

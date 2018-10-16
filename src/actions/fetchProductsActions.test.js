@@ -1,6 +1,6 @@
-import { fetchProducts } from '../../src/actions/fetchProductsActions'
+import {fetchProducts} from './fetchProductsActions'
 import configureMockStore from 'redux-mock-store'
-import { FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS } from '../../src/constants/ActionTypes'
+import { FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS } from '../constants/ActionTypes'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 

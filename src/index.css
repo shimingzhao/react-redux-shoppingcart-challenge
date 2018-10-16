@@ -11,7 +11,7 @@ body {
 }
 
 .page-container {
-    width: 800px;
+    width: 1000px;
     margin: 10px auto;
     padding: 32px;
     background-color: white;
@@ -32,7 +32,7 @@ body {
 
 .total {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: space-between;
     color: green;
     font-weight:bold;
@@ -50,4 +50,41 @@ body {
 
 .orderItem {
     width: 25%;
+}
+
+.orderTemp {
+    box-sizing: border-box;
+    /*padding: 5px 5px 5px;*/
+    width: 270px;
+    margin-top: 50px;
+    background-color: #FFF;
+    border: 1px solid #DBE3E7;
+    border-radius: 3px;
+    box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    /*position: absolute;*/
+    text-align: left;
+    color: #2B2E31;
+    /*opacity: 0;*/
+    /*pointer-events: none;*/
+}
+
+.main-content{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    /*justify-content: flex-end;*/
+}
+
+.orderTemp_list_1{
+    display: flex;
+    flex-flow: nowrap column;
+
+}
+
+.orderTemp_list_2{
+    display: flex;
+    flex-flow: nowrap row;
+    padding-bottom: 10px;
+    justify-content: space-between;
 }

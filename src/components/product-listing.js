@@ -7,11 +7,12 @@ import { Card } from 'semantic-ui-react'
 // import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
-  // console.log(props.items)
   return (
     <Card.Group>
       {
-        props.items.map((item, index) =>
+        props.items.map((item, index) => {
+          // console.log(props.order.filter(orderItem => orderItem.custom_id === item.custom_id)[0])
+          return(
           <ProductListItem
             item={item}
             key={index}
@@ -20,6 +21,7 @@ const ProductListing = (props) => {
             order={props.items}
             orderItem={props.order.filter(orderItem => orderItem.custom_id === item.custom_id)[0]}
           />)
+        })
       }
     </Card.Group>
   )
