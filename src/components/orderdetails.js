@@ -21,7 +21,6 @@ export default class OrderDetail extends Component {
     const {open, closeOnEscape, closeOnDimmerClick} = this.state
     return (
       <div>
-        {/*<Table.Header/>*/}
         <div>
           {
             order ?
@@ -37,21 +36,6 @@ export default class OrderDetail extends Component {
               :
               ''
           }
-          {/*          <Table.Header>
-          <Table.Row>
-          <Table.HeaderCell verticalAlign='middle' colSpan='2'>TOTAL: ${totalPrice.toFixed(2)}</Table.HeaderCell>
-          <Table.HeaderCell colSpan='3' textAlign='right'>
-          <Button basic color='green' onClick={() => {
-          props.actions.editOrder(props.order.order)
-          props.actions.deleteOrder(props.order)
-
-          }}><NavLink to='/'>Edit Order</NavLink></Button>
-          <Button basic color='green' onClick={() => {props.actions.deleteOrder(props.order)}}>Delete
-          Order</Button>
-          <Button basic color='green'>Checkout Order</Button>
-          </Table.HeaderCell>
-          </Table.Row>
-          </Table.Header>*/}
         </div>
         <div className='total'>
           <div style={{paddingBottom: '10px'}}>Total: ${order.price.toFixed(2)}</div>

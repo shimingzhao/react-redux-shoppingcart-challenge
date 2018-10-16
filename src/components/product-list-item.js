@@ -4,16 +4,13 @@ import RemoveItemBtn from './remove-item-btn'
 import { Button, Card, Image } from 'semantic-ui-react'
 
 const ProductListItem = (props) => {
-  // console.log(props.item)
-  const item = props.item
-  // console.log(item)
-  // console.log(props.item)
 
+  const item = props.item
+  
   return (
     <Card>
       <Card.Content>
         <Card.Header>{item.name}</Card.Header>
-        {/*<h3>{item.custom_id}</h3>*/}
         <Card.Description>${item.price.toFixed(2)}</Card.Description>
       </Card.Content>
       <Card.Content extra>

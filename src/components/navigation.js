@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import HomePage from './homepage'
 import Orders from './orderspage'
-// import Router from './router'
 
 export default class Navigation extends Component {
   state = {activeItem: 'menu'}

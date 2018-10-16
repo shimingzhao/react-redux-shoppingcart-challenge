@@ -7,7 +7,6 @@ import { fetchProducts } from '../actions/fetchProductsActions'
 import { addToOrder, removeFromOrder, removeAllFromOrder, setOrderInitialState } from '../actions/orderActions'
 import { placeOrder, deleteOrder } from '../actions/ordersActions'
 import Order from './order'
-import { Grid, Segment } from 'semantic-ui-react'
 
 class HomePage extends Component {
 
@@ -42,7 +41,6 @@ class HomePage extends Component {
             }
           )}
         </div>
-        {/*<Order order={order} actions={this.props.actions} clicker={clicker}/>*/}
       </div>
     )
   }

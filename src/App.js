@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import Router from './router'
 import Navigation from './components/navigation'
 
 class App extends Component {

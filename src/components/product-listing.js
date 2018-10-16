@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import ProductListItem from './product-list-item'
 import { addToOrder, removeFromOrder } from '../actions/orderActions'
 import { Card } from 'semantic-ui-react'
-// import { bindActionCreators } from 'redux/index'
 
 const ProductListing = (props) => {
   return (
