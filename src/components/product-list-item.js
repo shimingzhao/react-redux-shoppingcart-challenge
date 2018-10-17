@@ -6,7 +6,7 @@ import { Button, Card, Image } from 'semantic-ui-react'
 const ProductListItem = (props) => {
 
   const item = props.item
-  
+
   return (
     <Card>
       <Card.Content>
