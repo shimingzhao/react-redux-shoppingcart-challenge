@@ -33,6 +33,7 @@ const Room = () => (
       <div className={`room ${isLit ? 'lit' : 'dark'}`}>
         The room is {isLit ? 'lit' : 'dark'}.
         <br/>
+        <br/>
         <button onClick={onToggleLight}>Flip</button>
       </div>
     )}
@@ -41,9 +42,9 @@ const Room = () => (
 
 const App = () => (
   <RoomStore>
-    <div className="app">
+    {/*<div className="app">*/}
       <Room/>
-    </div>
+    {/*</div>*/}
   </RoomStore>
 )
 

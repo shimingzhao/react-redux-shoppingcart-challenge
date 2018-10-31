@@ -92,10 +92,10 @@ body {
 /*html,*/
 /*body,*/
 /*#root,*/
-/*.app,*/
-/*.room {*/
-    /*height: 100%;*/
-/*}*/
+.app,
+.room {
+    height: 100%;
+}
 /*html,*/
 /*body {*/
     /*margin: 0;*/
